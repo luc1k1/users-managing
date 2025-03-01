@@ -1,6 +1,9 @@
 {
     "Users": {
-        "ad": "$2b$12$w4K6IvSRTkONKeLNDDcCuuGNXhthU4dd3cAURhgOiw/cq8qfpu2Ce"
+        "ad": "$2b$12$w4K6IvSRTkONKeLNDDcCuuGNXhthU4dd3cAURhgOiw/cq8qfpu2Ce",
+        "hui": "$2b$12$PcChB4A5JHzkjv6xsjaCuOK1bNQ68bkAxjwAK9vDHmVx4vIz/CFhy",
+        "jo": "$2b$12$qI5SnUh3lhvopgW9uvNSUeTIPAv5QXL8jlhXbKJ3SrT0FBXsfyKtq",
+        "jojo": "$2b$12$sdrUp1YDP/F9bYQEN0wUR.wjlJO0ydx7u5w0umipmLu6uDF1bDAEy"
     },
     "Admins": {
         "admin": "$2b$12$9zfXsSu1BHGSCObCjStZRuMmLpeMcqD.4oxvcQROpSq0gsCcLfdYq"
