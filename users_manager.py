@@ -9,11 +9,19 @@ class Users:
         self.data = self.load_users()
 
     def load_users(self):
+        """Load users from JSON or create new"""
         try:
-            with open(self.filename, 'r') as f:
-                return json.load(f)
+            with open(self.filename, "r") as f:
+                content = f.read().strip()  
+                if not content:
+                    return {"Users": {}}  
+                return json.loads(content)  
         except FileNotFoundError:
-            return {"Users": {}}
+            print("⚠️File not found. Creating new...")
+            return {"Users": {}} 
+        except json.JSONDecodeError:
+            print("❌ Error: File users.json is damaged! Fixing...")
+            return {"Users": {}}  
     
     def save_data(self): 
         '''save data to json file'''
@@ -23,7 +31,7 @@ class Users:
 
     def hash_password(self, password):
         '''hash password'''
-        return hashlib.sha256(password.encode()).р2
+        return hashlib.sha256(password.encode()).hexdigest()
     
     def verify_password(self, username, password):
         ''''verify hashed password'''
@@ -33,10 +41,7 @@ class Users:
     
     def verify_name(self, username):
         '''verify username'''
-        try:
-            return username in self.data["Users"]
-        except KeyError:
-            return 'User not found'
+        return username in self.data["Users"]
 
     def verify_user(self, username, password):
         '''verify users data'''
@@ -52,7 +57,7 @@ class Users:
    
     def add_user(self, username, password):
         '''add user'''
-        if not self.verify_user(username):
+        if not self.verify_name(username):
             self.data["Users"][username] = self.hash_password(password)
             self.save_data()
             return True
@@ -64,9 +69,13 @@ class Users:
         '''login'''
         if self.verify_user(username, password):
             self.logged_in = username
+            print(f"Welcome {username}")
             return True
         else:
             return False
+        
+
+
     def logout(self):
         '''logout'''
         self.logged_in = False
