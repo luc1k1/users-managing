@@ -33,6 +33,8 @@ def main():
                 pass
             case _:
                 print("Invalid option")
+                print("Exiting...")
+                break
 
 
 

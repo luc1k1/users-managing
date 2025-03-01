@@ -6,6 +6,7 @@ import random
 class Users:
     '''users manager'''
     logged_in = False
+    priority = "Users"
     def __init__(self, filename = "users.json"):
         self.filename = filename
         self.data = self.load_users()
@@ -15,13 +16,13 @@ class Users:
         try:
             with open(self.filename, "r") as f:
                 content = f.read().strip()  
-                if not content:
+                if not content: #check if file is empty
                     return {"Users": {}}  
                 return json.loads(content)  
-        except FileNotFoundError:
+        except FileNotFoundError: #except FileNotFoundError:
             print("⚠️File not found. Creating new...")
             return {"Users": {}} 
-        except json.JSONDecodeError:
+        except json.JSONDecodeError:     #except json.JSONDecodeError:
             print("❌ Error: File users.json is damaged! Fixing...")
             return {"Users": {}}  
     
@@ -56,7 +57,6 @@ class Users:
     
     
    
-   
     def add_user(self, username, password):
         '''add user'''
         if not self.verify_name(username):
@@ -85,16 +85,16 @@ class Users:
     
     def delete_user(self, username):
         '''delete user'''
-        if self.logged_in == username:
+        if self.logged_in == username:  #check if user is logged in and can delete account
             del self.data["Users"][username]
             self.save_data()
             return True
         else:
-            return False
+            return "At first login,then you can delete your account"
 
     def user_exit(self):
         '''user exit'''
-        self.logged_in = False
+        self.logged_in = False #logout user
         return True
     def generate_password(self, length = random.randint(8, 12)):
         '''generate password'''
