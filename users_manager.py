@@ -1,5 +1,7 @@
 import json
 import hashlib
+import string
+import random
 
 class Users:
     '''users manager'''
@@ -90,4 +92,23 @@ class Users:
         else:
             return False
 
+    def user_exit(self):
+        '''user exit'''
+        self.logged_in = False
+        return True
+    def generate_password(self, length = random.randint(8, 12)):
+        '''generate password'''
+        return ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=length))
+    
+
+class Admin(Users):
+    '''admin'''
+    def __init__(self, filename = "users.json"):
+        #super().__init__(filename)
+        pass
+    def change_user_password(self, username, password):
+        pass
+        
+        
+        
         
