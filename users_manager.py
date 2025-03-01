@@ -1,5 +1,5 @@
 import json
-import hashlib
+import bcrypt
 import string
 import random
 
@@ -17,14 +17,14 @@ class Users:
             with open(self.filename, "r") as f:
                 content = f.read().strip()  
                 if not content: #check if file is empty
-                    return {"Users": {}}  
+                    return {self.priority: {}}  
                 return json.loads(content)  
         except FileNotFoundError: #except FileNotFoundError:
             print("⚠️File not found. Creating new...")
-            return {"Users": {}} 
+            return {self.priority: {}} 
         except json.JSONDecodeError:     #except json.JSONDecodeError:
             print("❌ Error: File users.json is damaged! Fixing...")
-            return {"Users": {}}  
+            return {self.priority: {}}  
     
     def save_data(self): 
         '''save data to json file'''
@@ -34,22 +34,23 @@ class Users:
 
     def hash_password(self, password):
         '''hash password'''
-        return hashlib.sha256(password.encode()).hexdigest()
-    
+        self.password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+        return self.password
+
     def verify_password(self, username, password):
         ''''verify hashed password'''
-        return self.hash_password(password) == self.data["Users"][username]
+        return self.hash_password(password) == self.data[self.priority][username]
     
     
     
     def verify_name(self, username):
         '''verify username'''
-        return username in self.data["Users"]
+        return username in self.data[self.priority]
 
     def verify_user(self, username, password):
         '''verify users data'''
         if self.verify_name(username):
-            self.data["Users"][username] = self.hash_password(password)
+            self.data[self.priority][username] = self.hash_password(password)
             self.save_data()
             return True
         else:
@@ -60,7 +61,7 @@ class Users:
     def add_user(self, username, password):
         '''add user'''
         if not self.verify_name(username):
-            self.data["Users"][username] = self.hash_password(password)
+            self.data[self.priority][username] = self.hash_password(password)
             self.save_data()
             return True
         else:
@@ -86,7 +87,7 @@ class Users:
     def delete_user(self, username):
         '''delete user'''
         if self.logged_in == username:  #check if user is logged in and can delete account
-            del self.data["Users"][username]
+            del self.data[self.priority][username]
             self.save_data()
             return True
         else:
@@ -103,12 +104,18 @@ class Users:
 
 class Admin(Users):
     '''admin'''
+    priority = "Admins"
     def __init__(self, filename = "users.json"):
-        #super().__init__(filename)
+        super().__init__(filename)
         pass
     def change_user_password(self, username, password):
         pass
-        
+    def delete_user(self, username):
+        pass
+    def show_users(self):
+        for user, password in self.data[self.priority].items():
+            print(f"Username: {user}, Password: {password}")
+    
         
         
         

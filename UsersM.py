@@ -2,6 +2,7 @@ import users_manager
 
 def main():
     users = users_manager.Users()
+    admins = users_manager.Admin()
     while True:
         print("1. Register")
         print("2. Login")
@@ -30,7 +31,16 @@ def main():
             case "5":
                 users.user_exit()
             case "6":
-                pass
+                username = input("Enter username: ")
+                password = input("Enter password: ")
+                admins.login(username, password)
+                while True:
+                    print("1. Change user password")
+                    print("2. Delete user")
+                    print("3. Exit")
+                    match input('Enter your choice: ').strip():
+                        case "1":
+                            username = input("Enter username: ")
             case _:
                 print("Invalid option")
                 print("Exiting...")
