@@ -1,5 +1,8 @@
 {
     "Users": {
-        "hu": "$2b$12$X4ctfwrQJMnvd0mr2NS5t.OnpMTtBAOLSipkKeubzBW0WpSeLiIYy"
+        "ad": "$2b$12$w4K6IvSRTkONKeLNDDcCuuGNXhthU4dd3cAURhgOiw/cq8qfpu2Ce"
+    },
+    "Admins": {
+        "admin": "$2b$12$9zfXsSu1BHGSCObCjStZRuMmLpeMcqD.4oxvcQROpSq0gsCcLfdYq"
     }
 }

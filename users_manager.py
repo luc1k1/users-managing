@@ -2,10 +2,11 @@ import json
 import bcrypt
 import string
 import random
+from tabulate import tabulate
 
 class Users:
     '''users manager'''
-    logged_in = False
+    __logged_in = False
     priority = "Users"
     def __init__(self, filename = "users.json"):
         self.filename = filename
@@ -105,17 +106,69 @@ class Users:
 class Admin(Users):
     '''admin'''
     priority = "Admins"
+    __logged_in = False
+    
+    
     def __init__(self, filename = "users.json"):
         super().__init__(filename)
-        pass
+        self.load_users()
+
+    def login(self, username, password):
+        '''login'''
+        if self.verify_user(username, password):
+            self.__logged_in = username
+            print(f"Welcome {username}")
+            return True
+        else:
+            return False
+
     def change_user_password(self, username, password):
-        pass
-    def delete_user(self, username):
-        pass
-    def show_users(self):
-        for user, password in self.data[self.priority].items():
-            print(f"Username: {user}, Password: {password}")
+        '''change user password  '''
+        self.data[super().priority][username] = self.hash_password(password)
+        self.save_data()
+        return True
     
+
+    def delete_user_for_admin(self, username):
+        '''Delete user'''
+        if self.verify_name(username):
+            del self.data[super().priority][username]
+            self.save_data()
+            return True
+        else:
+            return "User not found, please check the username"
+    
+
+    def show_users(self):
+        '''Show all users'''
+    
+        users_data = self.data.get(super().priority, {})
+        admins_data = self.data.get(self.priority, {})
+
+        if not users_data and not admins_data:
+            print("No users or admins found.")
+            return
+
+        def format_table(data, title):
+            if not data:
+                print(f"{title}: No data available.")
+                return
+
+            table = [(user, password) for user, password in data.items()]
+            headers = ["Username", "Password"]
+
+            print(f"\n{title}:")
+            print(tabulate(table, headers=headers, tablefmt="grid"))
+
+        format_table(users_data, "Users")
+        format_table(admins_data, "Admins")
+
+    def change_user_priority(self, username, priority):
+        '''Change user priority'''      
+        self.data[priority][username] = self.data[super().priority][username]
+        del self.data[super().priority][username]
+        self.save_data()
+        return True
         
         
         

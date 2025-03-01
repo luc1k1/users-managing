@@ -1,8 +1,34 @@
 import users_manager
+users = users_manager.Users()
+admins = users_manager.Admin()
+def admin_menu():
+    if admins.login(input("Enter username: "), input("Enter password: ")):
+        while True:
+            print("1. Show users")
+            print("2. Change user priority")
+            print("3. Delete user")
+            print("4. Exit")
+            match input('Enter your choice: ').strip():
+                case "1":
+                    admins.show_users()
+                case "2":
+                    username = input("Enter username: ")
+                    if users.verify_name(username):
+                        priority = input("Enter priority: ")
+                        admins.change_user_priority(username, priority)
+                    else:
+                        print("Invalid username, please check the username")
+                case "3":
+                    username = input("Enter username: ")
+                    admins.delete_user_for_admin(username)
+                case "4":
+                    break
+                case _:
+                    print("Invalid option")
+        else:
+            print("Invalid username or password, please try again")
 
 def main():
-    users = users_manager.Users()
-    admins = users_manager.Admin()
     while True:
         print("1. Register")
         print("2. Login")
@@ -31,20 +57,9 @@ def main():
             case "5":
                 users.user_exit()
             case "6":
-                username = input("Enter username: ")
-                password = input("Enter password: ")
-                admins.login(username, password)
-                while True:
-                    print("1. Change user password")
-                    print("2. Delete user")
-                    print("3. Exit")
-                    match input('Enter your choice: ').strip():
-                        case "1":
-                            username = input("Enter username: ")
+                    admin_menu()
             case _:
                 print("Invalid option")
-                print("Exiting...")
-                break
 
 
 
