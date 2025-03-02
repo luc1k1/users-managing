@@ -5,6 +5,13 @@ import random
 from tabulate import tabulate
 from datetime import datetime
 
+
+'''Made by Luc1k1
+    Version: 1.0.0
+    Date: 2025-03-02
+    Made for fun
+    '''
+
 class Users:
     '''users manager'''
     __logged_in = False
