@@ -5,3 +5,12 @@
 2025-03-01 20:14:34.245558: admin logged in
 2025-03-02 10:06:52.221127: Users and Admins shown
 2025-03-02 10:22:34.056929: admin logged in
+2025-03-02 10:35:07.214227: admin logged in
+2025-03-02 10:37:03.881777: admin logged in
+2025-03-02 10:37:19.755441: Admin changed ad priority to Admins
+2025-03-02 10:37:22.717692: Users and Admins shown
+2025-03-02 10:39:40.816919: admin logged in
+2025-03-02 10:40:31.594376: admin logged in
+2025-03-02 10:43:17.072570: admin logged in
+2025-03-02 10:43:57.086792: admin logged in
+2025-03-02 10:44:08.968440: Admin changed ad priority from Admins to Users

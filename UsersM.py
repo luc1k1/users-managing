@@ -17,11 +17,8 @@ def admin_menu():
                 admins.show_users()
             case "2":
                 username = input("Enter username: ")
-                if users.verify_name(username):
-                    priority = input("Enter priority: ")
-                    admins.change_user_priority(username, priority)
-                else:
-                    print("❌ Invalid username, please check the username")
+                priority = input("Enter priority: ")
+                admins.change_user_priority(username, priority)
             case "3":
                 username = input("Enter username: ")
                 admins.delete_user_for_admin(username)
@@ -37,7 +34,7 @@ def main():
         print("3. Logout")
         print("4. Delete user")
         print("5. Exit")
-        print("6. Admin")
+        print("6. 🔹  Admin 🔹  ")
         match input('Enter your choice: ').strip():
             case "1":
                 username = input("Enter username: ")

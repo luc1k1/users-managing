@@ -16,6 +16,18 @@
 
 ---
 
+## 📸 Screenshots
+### **User Login Screen**
+![User Login](https://github.com/luc1k1/user-management-system/raw/main/screenshots/main.png)
+
+### **Admin Panel**
+![Admin Panel](https://github.com/luc1k1/user-management-system/raw/main/screenshots/Admin.png)
+
+### **Change Priority**
+![User Registration](https://github.com/luc1k1/user-management-system/raw/main/screenshots/changeP.png)
+
+---
+
 ## ⚙️ Installation & Setup
 ### 📌 Prerequisites
 Ensure you have **Python 3.10+** installed on your system. Then, install the required dependencies:

@@ -11,3 +11,14 @@ user-int:
 |--- projectStructure.txt -  just a project projectStructure
 |
 |--- .gitignore - just for github
+|
+|--- screenshots- -
+|                  |
+|                  |-- Admin.png Admin screenshot
+|                  |
+|                  |-- ChangeP.png priority screenshot
+|                  |
+|                  |-- main.png Main menu screenshot
+|
+|
+|--- README.md README for github

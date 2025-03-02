@@ -195,13 +195,35 @@ class Admin(Users):
         format_table(admins_data, "Admins")
         self.log_action("Users and Admins shown")
 
-    def change_user_priority(self, username, priority):
-        '''Change user priority'''      
-        self.data[priority][username] = self.data[super().priority][username]
-        del self.data[super().priority][username]
+    def change_user_priority(self, username, new_priority):
+        """Change user priority between Users and Admins"""
+
+        # Determine the current priority of the user
+        if username in self.data["Users"]:
+            old_priority = "Users"
+        elif username in self.data["Admins"]:
+            old_priority = "Admins"
+        else:
+            print(f"❌ User {username} not found!")
+            return False
+
+        
+        if old_priority == new_priority:
+            print(f"⚠️ {username} is already in {new_priority}!")
+            return False
+
+        # Move the user to the new priority group
+        self.data[new_priority][username] = self.data[old_priority][username]
+        del self.data[old_priority][username]
+
+        # Save changes
         self.save_data()
-        self.log_action(f"Admin changed {username} priority to {priority}")
+        self.log_action(f"Admin changed {username} priority from {old_priority} to {new_priority}")
+
+        print(f"✅ {username} is now in {new_priority}!")
         return True
+
+            
 
         
         
