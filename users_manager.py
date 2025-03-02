@@ -12,6 +12,7 @@ class Users:
     def __init__(self, filename = "users.json"):
         self.filename = filename
         self.data = self.load_users()
+        self.attempts = {}
 
     def load_users(self):
         """Load users from JSON or create new"""
@@ -63,11 +64,17 @@ class Users:
         else:
             return False
     
-    def limit_attempts(self, username, password):
-        '''Limit attempts'''
-        x = 0
-        if x < 3:
+    def limit_attempts(self, username):
+        '''limit attempts'''
+        if username not in self.attempts:
+            self.attempts[username] = 0
+
+        self.attempts[username] += 1
+
+        if self.attempts[username] >= 3:
+            print("❌ Too many attempts")
             return False
+        return True
    
     def add_user(self, username, password):
         '''Add user'''
@@ -83,16 +90,17 @@ class Users:
     
     def login(self, username, password):
         '''Login to account'''
-        while True:
-            if self.verify_user(username, password):
-                self.logged_in = username
-                print(f"Welcome {username}")
-                self.log_action(f"{username} logged in")
-                self.limit_attempts(username, password)
+        if not self.limit_attempts(username):
+            return False
 
-                return True
-            else:
-                print("❌Invalid username or password")
+        if self.verify_user(username, password):
+            self.__logged_in = username
+            print(f"✅ Welcome, {username}!")
+            self.log_action(f"{username} logged in")
+            return True
+        else:
+            print("❌ Invalid data")
+            return False
 
 
     def logout(self):
@@ -134,13 +142,14 @@ class Admin(Users):
 
     def login(self, username, password):
         '''login'''
+        if not self.limit_attempts(username):
+            return False
+
         if self.verify_user(username, password):
             self.__logged_in = username
-            print(f"Welcome {username}")
+            print(f"✅ Welcome, {username}!")
             self.log_action(f"{username} logged in")
-            self.limit_attempts(username, password)
-            self.x += 1
-            return False
+            return True
 
     def change_user_password(self, username, password):
         '''Change user password for admin'''
