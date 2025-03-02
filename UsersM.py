@@ -29,6 +29,7 @@ def admin_menu():
 
 def main():
     while True:
+        print("\n📌 Main menu:")
         print("1. Register")
         print("2. Login")
         print("3. Logout")

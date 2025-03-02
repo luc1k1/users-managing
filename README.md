@@ -2,7 +2,10 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)  
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)  
-![Contributors](https://img.shields.io/github/contributors/yourrepo/yourproject.svg)  
+![Contributors](https://img.shields.io/github/contributors/luc1k1/users-managing.svg)  
+![Issues](https://img.shields.io/github/issues/luc1k1/users-managing)  
+![Forks](https://img.shields.io/github/forks/luc1k1/users-managing)  
+![Stars](https://img.shields.io/github/stars/luc1k1/users-managing)  
 
 ## 🚀 About the Project
 **User Management System** is a robust, secure, and efficient authentication system built using **Python**. It provides:
@@ -17,14 +20,14 @@
 ---
 
 ## 📸 Screenshots
-### **User Login Screen**
-![User Login](https://github.com/luc1k1/user-management-system/raw/main/screenshots/main.png)
+### **User Main Panel**
+![User Main Panel](https://github.com/luc1k1/users-managing/raw/main/screenshots/main.png)
 
 ### **Admin Panel**
-![Admin Panel](https://github.com/luc1k1/user-management-system/raw/main/screenshots/Admin.png)
+![Admin Panel](https://github.com/luc1k1/users-managing/raw/main/screenshots/Admin.png)
 
 ### **Change Priority**
-![User Registration](https://github.com/luc1k1/user-management-system/raw/main/screenshots/changeP.png)
+![Change Priority](https://github.com/luc1k1/users-managing/raw/main/screenshots/changeP.png)
 
 ---
 
@@ -37,15 +40,14 @@ pip install bcrypt tabulate
 
 ### 📌 Clone the Repository
 ```sh
-git clone https://github.com/luc1k1/user-management-system.git
-cd user-management-system
+git clone https://github.com/luc1k1/users-managing.git
+cd users-managing
 ```
 
 ### 📌 Run the Program
 ```sh
 python main.py
 ```
-
 ---
 
 ## 🔥 Features
