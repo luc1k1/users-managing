@@ -17,16 +17,17 @@ def admin_menu():
                         priority = input("Enter priority: ")
                         admins.change_user_priority(username, priority)
                     else:
-                        print("Invalid username, please check the username")
+                        print("❌ Invalid username, please check the username")
                 case "3":
                     username = input("Enter username: ")
                     admins.delete_user_for_admin(username)
                 case "4":
                     break
                 case _:
-                    print("Invalid option")
-        else:
-            print("Invalid username or password, please try again")
+                    print("❌ Invalid option")
+    else:
+        print("❌ Invalid username or password, please try again")
+        
 
 def main():
     while True:
@@ -59,7 +60,7 @@ def main():
             case "6":
                     admin_menu()
             case _:
-                print("Invalid option")
+                print("❌ Invalid option")
 
 
 
