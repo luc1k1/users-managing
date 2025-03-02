@@ -2,32 +2,33 @@ import users_manager
 users = users_manager.Users()
 admins = users_manager.Admin()
 def admin_menu():
-    if admins.login(input("Enter username: "), input("Enter password: ")):
-        while True:
-            print("1. Show users")
-            print("2. Change user priority")
-            print("3. Delete user")
-            print("4. Exit")
-            match input('Enter your choice: ').strip():
-                case "1":
-                    admins.show_users()
-                case "2":
-                    username = input("Enter username: ")
-                    if users.verify_name(username):
-                        priority = input("Enter priority: ")
-                        admins.change_user_priority(username, priority)
-                    else:
-                        print("❌ Invalid username, please check the username")
-                case "3":
-                    username = input("Enter username: ")
-                    admins.delete_user_for_admin(username)
-                case "4":
-                    break
-                case _:
-                    print("❌ Invalid option")
-    else:
-        print("❌ Invalid username or password, please try again")
-        
+    if not admins.login(input("Enter username: "), input("Enter password: ")):
+        print("❌ Invalid data, please try again")
+        return
+
+    while True:
+        print("\n🔹 Admin menu:")
+        print("1. Show users")
+        print("2. Change user priority")
+        print("3. Delete user")
+        print("4. Exit")
+        match input('Enter your choice: ').strip():
+            case "1":
+                admins.show_users()
+            case "2":
+                username = input("Enter username: ")
+                if users.verify_name(username):
+                    priority = input("Enter priority: ")
+                    admins.change_user_priority(username, priority)
+                else:
+                    print("❌ Invalid username, please check the username")
+            case "3":
+                username = input("Enter username: ")
+                admins.delete_user_for_admin(username)
+            case "4":
+                break
+            case _:
+                print("❌ Invalid option")    
 
 def main():
     while True:
