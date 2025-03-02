@@ -29,13 +29,22 @@ def admin_menu():
 
 def main():
     while True:
-        print("\n📌 Main menu:")
-        print("1. Register")
-        print("2. Login")
-        print("3. Logout")
-        print("4. Delete user")
-        print("5. Exit")
-        print("6. 🔹  Admin 🔹  ")
+        print("\n📌 Main Menu:")
+        options = []
+        if not users.logged_in:
+            options.append("Register")
+        options.append("Login")
+        options.append("Logout")
+        options.append("Delete User")
+        options.append("Exit")
+        options.append("🔹 Admin 🔹")
+
+        # Print numbered options dynamically / remove 1 if user is logged in
+        for index, option in enumerate(options, start=1):
+            print(f"{index}. {option}")
+        options = []
+        
+    
         match input('Enter your choice: ').strip():
             case "1":
                 username = input("Enter username: ")

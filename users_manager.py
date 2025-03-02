@@ -4,6 +4,7 @@ import string
 import random
 from tabulate import tabulate
 from datetime import datetime
+from time import sleep
 
 
 '''Made by Luc1k1
@@ -14,7 +15,7 @@ from datetime import datetime
 
 class Users:
     '''users manager'''
-    __logged_in = False
+    logged_in = False
     priority = "Users"
     def __init__(self, filename = "users.json"):
         self.filename = filename
@@ -62,6 +63,11 @@ class Users:
         '''Verify username'''
         return username in self.data[self.priority]
 
+    
+    def clear_console(self):
+        '''Clear console'''
+        print("\033c", end="")
+
     def verify_user(self, username, password):
         '''Verify users data'''
         if self.verify_name(username):
@@ -89,9 +95,12 @@ class Users:
             self.data[self.priority][username] = self.hash_password(password)
             self.save_data()
             self.log_action(f"{username} registered")
+            print(f"✅ {username} registered")
+            sleep(3)
+            self.clear_console()
             return True
         else:
-            print("User already exists")
+            print("❌ User already exists")
             self.log_action(f"❌ {username} failed to register")
             return False
     
@@ -101,9 +110,11 @@ class Users:
             return False
 
         if self.verify_user(username, password):
-            self.__logged_in = username
+            self.logged_in = username
             print(f"✅ Welcome, {username}!")
             self.log_action(f"{username} logged in")
+            sleep(3)
+            self.clear_console()
             return True
         else:
             print("❌ Invalid data")
@@ -114,23 +125,36 @@ class Users:
         '''logout'''
         self.logged_in = False
         self.log_action(f"{self.logged_in} logged out")
+        print(f"✅ {self.logged_in} logged out")
+        sleep(3)
+        self.clear_console()
         return True
     
+
     def delete_user(self, username):
         '''delete user'''
         if self.logged_in == username:  #check if user is logged in and can delete account
             del self.data[self.priority][username]
             self.save_data()
             self.log_action(f"✅ {username} deleted their account")
+            print(f"✅ {username} deleted their account")
+            sleep(3)
+            self.clear_console()
             return True
         else:
             self.log_action(f"❌ {username} failed to delete their account")
-            return "At first login,then you can delete your account"
+            print("❌ At first login,then you can delete your account")
+            sleep(3)
+            self.clear_console()
+            return False
 
     def user_exit(self):
         '''user exit'''
         self.logged_in = False #logout user
         self.log_action(f"{self.logged_in} logged out")
+        print(f"✅ {self.logged_in} logged out")
+        sleep(3)
+        self.clear_console()
         return True
     def generate_password(self, length = random.randint(8, 12)):
         '''generate password'''
@@ -172,9 +196,13 @@ class Admin(Users):
             del self.data[super().priority][username]
             self.save_data()
             self.log_action(f"{username} deleted their account")
+            print(f"✅ {username} deleted their account")
+            sleep(3)
+            self.clear_console()
             return True
         else:
             return "User not found, please check the username"
+        
     
 
     def show_users(self):
@@ -204,7 +232,6 @@ class Admin(Users):
 
     def change_user_priority(self, username, new_priority):
         """Change user priority between Users and Admins"""
-
         # Determine the current priority of the user
         if username in self.data["Users"]:
             old_priority = "Users"
@@ -212,11 +239,15 @@ class Admin(Users):
             old_priority = "Admins"
         else:
             print(f"❌ User {username} not found!")
+            sleep(3)
+            self.clear_console()
             return False
 
         
         if old_priority == new_priority:
             print(f"⚠️ {username} is already in {new_priority}!")
+            sleep(3)
+            self.clear_console()
             return False
 
         # Move the user to the new priority group
@@ -228,9 +259,18 @@ class Admin(Users):
         self.log_action(f"Admin changed {username} priority from {old_priority} to {new_priority}")
 
         print(f"✅ {username} is now in {new_priority}!")
+        sleep(3)
+        self.clear_console()
         return True
-
-            
+    def ban_user(self, username):
+        '''Ban user'''
+        if self.verify_name(username):
+            self.data[super().priority][username] = "Banned"
+            self.save_data()
+            self.log_action(f"{username} banned")
+            return True
+        else:
+            return "User not found, please check the username"
 
         
         

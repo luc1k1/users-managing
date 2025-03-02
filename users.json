@@ -1,8 +1,12 @@
 {
     "Users": {
-        "ad": "$2b$12$w4K6IvSRTkONKeLNDDcCuuGNXhthU4dd3cAURhgOiw/cq8qfpu2Ce"
+        "ad": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy",
+        "\u0444\u0432": "$2b$12$Yl4xtdNJYvYs3WqScMiAwurHr8PF7P9UOIhcaSuIcoGbP3eyoVocS"
     },
     "Admins": {
-        "admin": "$2b$12$ltO2iWVjHMRqQ3A70cF93.ZWCPQ.rysuzpDd.CJ2Pzvb805h9vr2S"
+        "admin": "$2b$12$IJ7BSc8r58NKm4Ir53H4tOH5CogRedoQOcpOAS14Ct6pIm3GAP5Qy"
+    },
+    "Banned": {
+        "adc": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy"
     }
 }

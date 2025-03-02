@@ -14,3 +14,13 @@
 2025-03-02 10:43:17.072570: admin logged in
 2025-03-02 10:43:57.086792: admin logged in
 2025-03-02 10:44:08.968440: Admin changed ad priority from Admins to Users
+2025-03-02 17:50:39.062625: admin logged in
+2025-03-02 17:55:42.028595: admin logged in
+2025-03-02 17:56:50.664024: admin logged in
+2025-03-02 17:58:59.239004: ad logged in
+2025-03-02 17:59:42.303731: False logged out
+2025-03-02 17:59:51.578044: ad logged in
+2025-03-02 18:05:15.324335: ad logged in
+2025-03-02 18:08:39.398555: ad logged in
+2025-03-02 18:11:25.705719: фв registered
+2025-03-02 18:12:52.233727: ad logged in
