@@ -1,9 +1,10 @@
 {
     "Users": {
-        "\u0444\u0432": "$2b$12$Yl4xtdNJYvYs3WqScMiAwurHr8PF7P9UOIhcaSuIcoGbP3eyoVocS"
+        "\u0444\u0432": "$2b$12$Yl4xtdNJYvYs3WqScMiAwurHr8PF7P9UOIhcaSuIcoGbP3eyoVocS",
+        "Ha": "$2b$12$54Em1mhQfBckCzeawbhFHuP9RO.38XAjrCIyQedjgVn7KVN9XHmze"
     },
     "Admins": {
-        "admin": "$2b$12$GrXVX0d.3Cr2L7EPNj3DhOkyzPlpXHVGz1hzqKAVCTZENS/6n9lC2"
+        "admin": "$2b$12$kylhE1bNdwNu.LMimib0GO7koZtDYo2j8KclKeJa4RKtTKQTC3lQy"
     },
     "Banned": {
         "adc": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy",

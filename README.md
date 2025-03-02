@@ -23,6 +23,9 @@
 ### **User Main Panel**
 ![User Main Panel](https://github.com/luc1k1/users-managing/raw/main/screenshots/main.png)
 
+### **User Main Panel if logged in**
+![User Main Panel if logged in](https://github.com/luc1k1/users-managing/raw/main/screenshots/image.png)
+
 ### **Admin Panel**
 ![Admin Panel](https://github.com/luc1k1/users-managing/raw/main/screenshots/Admin.png)
 

@@ -5,6 +5,8 @@ admins = users_manager.Admin()
 def admin_menu():
     if not admins.login(input("Enter username: "), input("Enter password: ")):
         print("❌ Invalid data, please try again")
+        sleep(3)
+        admins.clear_console()
         return
 
     while True:
@@ -36,23 +38,32 @@ def admin_menu():
 
 def main():
     while True:
+        if users.logged_in:
+            print(f" Welcome, {users.logged_in}!")
         print("\n📌 Main Menu:")
         options = []
         if not users.logged_in:
             options.append("Register")
-        options.append("Login")
+        if not users.logged_in:
+            options.append("Login")
         options.append("Logout")
         options.append("Delete User")
         options.append("Exit")
-        options.append("🔹 Admin 🔹")
+        if not users.logged_in:
+            options.append("🔹 Admin 🔹")
 
         # Print numbered options dynamically / remove 1 if user is logged in
         for index, option in enumerate(options, start=1):
-            print(f"{index}. {option}")
+            print(f"        {index}. {option}")
         
     
         match input('Enter your choice: ').strip():
             case "Register":
+                if users.logged_in:
+                    print("❌ You must be logged out to register")
+                    sleep(3)
+                    users.clear_console()
+                    continue
                 username = input("Enter username: ")
                 if input("Generate password? (y/n): ").strip() == "y":
                     password = users.generate_password()
@@ -61,6 +72,11 @@ def main():
                     password = input("Enter password: ")
                 users.add_user(username, password)
             case "Login":
+                if users.logged_in:
+                    print("❌ You must be logged out to login")
+                    sleep(3)
+                    users.clear_console()
+                    continue
                 username = input("Enter username: ")
                 password = input("Enter password: ")
                 users.login(username, password)
@@ -72,7 +88,8 @@ def main():
             case "Exit":
                 users.user_exit()
             case "Admin":
-                admin_menu()
+                if not users.logged_in:
+                    admin_menu()
             case _:
                 print("❌ Invalid option")
                 sleep(3)
