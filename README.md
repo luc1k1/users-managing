@@ -46,7 +46,7 @@ cd users-managing
 
 ### 📌 Run the Program
 ```sh
-python main.py
+python UsersM.py
 ```
 ---
 

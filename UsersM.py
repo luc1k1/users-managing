@@ -1,4 +1,5 @@
 import users_manager
+from time import sleep
 users = users_manager.Users()
 admins = users_manager.Admin()
 def admin_menu():
@@ -11,7 +12,8 @@ def admin_menu():
         print("1. Show users")
         print("2. Change user priority")
         print("3. Delete user")
-        print("4. Exit")
+        print("4. Ban user")
+        print("5. Exit")
         match input('Enter your choice: ').strip():
             case "1":
                 admins.show_users()
@@ -23,9 +25,14 @@ def admin_menu():
                 username = input("Enter username: ")
                 admins.delete_user_for_admin(username)
             case "4":
+                username = input("Enter username: ")
+                admins.ban_user(username)
+            case "5":
                 break
             case _:
                 print("❌ Invalid option")    
+                sleep(3)
+                admins.clear_console()
 
 def main():
     while True:
@@ -42,11 +49,10 @@ def main():
         # Print numbered options dynamically / remove 1 if user is logged in
         for index, option in enumerate(options, start=1):
             print(f"{index}. {option}")
-        options = []
         
     
         match input('Enter your choice: ').strip():
-            case "1":
+            case "Register":
                 username = input("Enter username: ")
                 if input("Generate password? (y/n): ").strip() == "y":
                     password = users.generate_password()
@@ -54,21 +60,23 @@ def main():
                 else:
                     password = input("Enter password: ")
                 users.add_user(username, password)
-            case "2":
+            case "Login":
                 username = input("Enter username: ")
                 password = input("Enter password: ")
                 users.login(username, password)
-            case "3":
+            case "Logout":
                 users.logout()
-            case "4":
+            case "Delete User":
                 username = input("Enter username: ")
                 users.delete_user(username)
-            case "5":
+            case "Exit":
                 users.user_exit()
-            case "6":
-                    admin_menu()
+            case "Admin":
+                admin_menu()
             case _:
                 print("❌ Invalid option")
+                sleep(3)
+                users.clear_console()
 
 
 

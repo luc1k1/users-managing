@@ -1,12 +1,12 @@
 {
     "Users": {
-        "ad": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy",
         "\u0444\u0432": "$2b$12$Yl4xtdNJYvYs3WqScMiAwurHr8PF7P9UOIhcaSuIcoGbP3eyoVocS"
     },
     "Admins": {
-        "admin": "$2b$12$IJ7BSc8r58NKm4Ir53H4tOH5CogRedoQOcpOAS14Ct6pIm3GAP5Qy"
+        "admin": "$2b$12$GrXVX0d.3Cr2L7EPNj3DhOkyzPlpXHVGz1hzqKAVCTZENS/6n9lC2"
     },
     "Banned": {
-        "adc": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy"
+        "adc": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy",
+        "ad": "$2b$12$12wjaboh5m8oGtCZbMOkJO7zMOm0JHxUViZd5lz5Ad3Sp4a9eNYMy"
     }
 }

@@ -62,7 +62,10 @@ class Users:
     def verify_name(self, username):
         '''Verify username'''
         return username in self.data[self.priority]
-
+    
+    def verify_banned(self, username):
+        '''Verify banned'''
+        return username in self.data["Banned"]
     
     def clear_console(self):
         '''Clear console'''
@@ -70,6 +73,11 @@ class Users:
 
     def verify_user(self, username, password):
         '''Verify users data'''
+        if self.verify_banned(username):
+            print("❌ You are banned")
+            sleep(3)
+            self.clear_console()
+            return False
         if self.verify_name(username):
             self.data[self.priority][username] = self.hash_password(password)
             self.save_data()
@@ -108,7 +116,9 @@ class Users:
         '''Login to account'''
         if not self.limit_attempts(username):
             return False
-
+        if self.verify_banned(username):
+            print("❌ You are banned")
+            return False
         if self.verify_user(username, password):
             self.logged_in = username
             print(f"✅ Welcome, {username}!")
@@ -180,6 +190,8 @@ class Admin(Users):
             self.__logged_in = username
             print(f"✅ Welcome, {username}!")
             self.log_action(f"{username} logged in")
+            sleep(3)
+            self.clear_console()
             return True
 
     def change_user_password(self, username, password):
@@ -262,15 +274,19 @@ class Admin(Users):
         sleep(3)
         self.clear_console()
         return True
+    
+
     def ban_user(self, username):
         '''Ban user'''
-        if self.verify_name(username):
-            self.data[super().priority][username] = "Banned"
-            self.save_data()
-            self.log_action(f"{username} banned")
-            return True
-        else:
-            return "User not found, please check the username"
+        self.data["Banned"][username] = self.data[super().priority][username]
+        del self.data[super().priority][username]
+        self.save_data()
+        self.log_action(f"{username} banned by admin")
+        print(f"✅ {username} banned by admin")
+        sleep(3)
+        self.clear_console()
+        return True
+        
 
         
         
