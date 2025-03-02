@@ -22,7 +22,7 @@ class Users:
                     return {self.priority: {}}  
                 return json.loads(content)  
         except FileNotFoundError: #except FileNotFoundError:
-            print("⚠️File not found. Creating new...")
+            print("❌ File not found. Creating new...")
             return {self.priority: {}} 
         except json.JSONDecodeError:     #except json.JSONDecodeError:
             print("❌ Error: File users.json is damaged! Fixing...")
@@ -63,7 +63,11 @@ class Users:
         else:
             return False
     
-    
+    def limit_attempts(self, username, password):
+        '''Limit attempts'''
+        x = 0
+        if x < 3:
+            return False
    
     def add_user(self, username, password):
         '''Add user'''
@@ -74,20 +78,21 @@ class Users:
             return True
         else:
             print("User already exists")
-            self.log_action(f"{username} failed to register")
+            self.log_action(f"❌ {username} failed to register")
             return False
     
     def login(self, username, password):
         '''Login to account'''
-        if self.verify_user(username, password):
-            self.logged_in = username
-            print(f"Welcome {username}")
-            self.log_action(f"{username} logged in")
-            return True
-        else:
-            self.log_action(f"{username} failed to login")
-            return False
-        
+        while True:
+            if self.verify_user(username, password):
+                self.logged_in = username
+                print(f"Welcome {username}")
+                self.log_action(f"{username} logged in")
+                self.limit_attempts(username, password)
+
+                return True
+            else:
+                print("❌Invalid username or password")
 
 
     def logout(self):
@@ -101,10 +106,10 @@ class Users:
         if self.logged_in == username:  #check if user is logged in and can delete account
             del self.data[self.priority][username]
             self.save_data()
-            self.log_action(f"{username} deleted their account")
+            self.log_action(f"✅ {username} deleted their account")
             return True
         else:
-            self.log_action(f"{username} failed to delete their account")
+            self.log_action(f"❌ {username} failed to delete their account")
             return "At first login,then you can delete your account"
 
     def user_exit(self):
@@ -133,8 +138,8 @@ class Admin(Users):
             self.__logged_in = username
             print(f"Welcome {username}")
             self.log_action(f"{username} logged in")
-            return True
-        else:
+            self.limit_attempts(username, password)
+            self.x += 1
             return False
 
     def change_user_password(self, username, password):
@@ -186,8 +191,8 @@ class Admin(Users):
         self.data[priority][username] = self.data[super().priority][username]
         del self.data[super().priority][username]
         self.save_data()
-        self.log_action(f"{username} changed their priority to {priority}")
+        self.log_action(f"Admin changed {username} priority to {priority}")
         return True
-        
+
         
         

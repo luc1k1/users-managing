@@ -1,0 +1,13 @@
+user-int:
+|
+|--- users.json -  for passwords and usernames
+|
+|--- users_manager.py -  for main user managing
+|
+|--- UsersM.py - for console choise for user 
+|
+|--- logs.txt for - loging users requests
+|
+|--- projectStructure.txt -  just a project projectStructure
+|
+|--- .gitignore - just for github
